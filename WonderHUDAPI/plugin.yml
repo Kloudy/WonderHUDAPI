@@ -1,0 +1,7 @@
+name: WonderHUDAPI
+main: com.antarescraft.kloudy.wonderhudapi.WonderHUDPlugin
+version: 1.0
+author: Kloudy
+website: www.antarescraft.com
+
+depend: [ProtocolLib]
