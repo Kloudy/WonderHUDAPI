@@ -7,8 +7,6 @@ package com.antarescraft.kloudy.wonderhudapi;
 public enum HUDPosition
 {
 	TOP_CENTER(Math.PI/6.2, 0),
-	TOP_RIGHT(Math.PI/6.2, 0.75),
-	TOP_LEFT(Math.PI/6.2, -0.75),
 	CENTER(Math.PI/20, 0),
 	BOTTOM_CENTER(-Math.PI/20, 0);
 	

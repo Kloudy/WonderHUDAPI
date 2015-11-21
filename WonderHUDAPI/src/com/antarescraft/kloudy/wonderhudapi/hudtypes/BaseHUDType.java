@@ -12,7 +12,9 @@ public abstract class BaseHUDType
 		this.position = position;
 	}
 	
+	public abstract void setDistance(double distance);
 	public abstract double getDistance();
+	public abstract void setDeltaTheta(double angle);
 	public abstract double getDeltaTheta();
 	public abstract double getVerticalAngle();
 	public abstract double getHorizontalAngle();

@@ -4,16 +4,25 @@ import com.antarescraft.kloudy.wonderhudapi.HUDPosition;
 
 public class ImageHUD extends BaseHUDType
 {
-	private double distance, deltaTheta;
+	private double distance, angle;
 	
 	public ImageHUD(HUDPosition position, int width, int height)
 	{
+		this(position, width, height, 20, Math.PI / 800);
+	}
+	
+	public ImageHUD(HUDPosition position, int width, int height, double distance, double angle)
+	{
 		super(position);
 		
-		distance = 20;
-		//deltaTheta = Math.PI / 288;
-		deltaTheta = Math.PI/ 800;
-		//offsetAngle = Math.PI / 5.7;
+		this.distance = distance;
+		this.angle = angle;
+	}
+	
+	@Override
+	public void setDistance(double distance)
+	{
+		this.distance = distance;
 	}
 	
 	@Override
@@ -23,9 +32,15 @@ public class ImageHUD extends BaseHUDType
 	}
 	
 	@Override
+	public void setDeltaTheta(double angle)
+	{
+		this.angle = angle;
+	}
+	
+	@Override
 	public double getDeltaTheta()
 	{
-		return deltaTheta;
+		return angle;
 	}
 	
 	@Override

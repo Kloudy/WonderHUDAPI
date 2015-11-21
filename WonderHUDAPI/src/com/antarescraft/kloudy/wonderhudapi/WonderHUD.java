@@ -102,6 +102,24 @@ public class WonderHUD
 	 */
 	public static void spawnHUD(Player player, HUDPosition position, int maxLines, ArrayList<String> lines)
 	{
+		spawnHUD(player, position, maxLines, lines, -1, -1);//-1 for displayDistance and lineHeight indicate that the default values should be used
+	}
+	
+	/**
+	 * Spawns a HUD into the player's view with the given text lines at the given position.
+	 * The method will do nothing if the player already has a hud at the given position.
+	 * 
+	 * @param player The player for whom to spawn the HUD
+	 * @param position The position of the HUD on the screen
+	 * @param maxLines The maximum number of lines the HUD can have. Any additional lines exeeding this value will not be displayed.
+	 * @param lines The lines to text to display on the HUD
+	 * @param displayDistance The distance the HUD is from the player (default value: 8)
+	 * @param lineHeight separation between the individual lines of the HUD (default value: Math.PI / 118)
+	 * 
+	 * Throws IllegalArgumentException if maxLength is less than 1
+	 */
+	public static void spawnHUD(Player player, HUDPosition position, int maxLines, ArrayList<String> lines, double displayDistance, double lineHeight)
+	{
 		if(maxLines < 1)
 		{
 			throw new IllegalArgumentException("maxLength must be > 0");
@@ -111,7 +129,16 @@ public class WonderHUD
 		
 		if(!playerHUD.hudExists(position))
 		{
-			HUD hud = new HUD(player, maxLines, lines, new BasicHUD(position));
+			HUD hud = null;
+			
+			if(displayDistance < 0 || lineHeight < 0)//use default values for displayDistance and lineHeight
+			{
+				hud = new HUD(player, maxLines, lines, new BasicHUD(position));
+			}
+			else
+			{
+				hud = new HUD(player, maxLines, lines, new BasicHUD(position, displayDistance, lineHeight));
+			}
 			
 			playerHUD.addHUD(hud);
 		}
@@ -131,6 +158,26 @@ public class WonderHUD
 	 * Throws IllegalArgumentException if maxLength is less than 1 or if width or height is less than 1
 	 */
 	public static void spawnHUD(Player player, HUDPosition position, int maxLines, BufferedImage image, int width, int height)
+	{
+		spawnHUD(player, position, maxLines, image, width, height, -1, -1);
+	}
+	
+	/**
+	 * Spawns a HUD into the player's view displaying the given image at the given position. 
+	 * The method will do nothing if the player already has a hud at the given position.
+	 * 
+	 * @param player The player for whom to spawn the HUD
+	 * @param maxLines The maximum number of lines the HUD can have. If image's height is greater than this value then the additional lines of the image will be cut off.
+	 * @param position The position of the HUD on the screen
+	 * @param image The image to display on the HUD
+	 * @param width The width of the HUD (The input image width will be resized to match this value)
+	 * @param height The heigiht of the HUD (The input image height will be resized to match this value)
+	 * @param displayDistance The distance the HUD is from the player (default value: 20)
+	 * @param lineHeight separation between the individual lines of the HUD (default value: Math.PI / 800)
+	 * 
+	 * Throws IllegalArgumentException if maxLength is less than 1 or if width or height is less than 1
+	 */
+	public static void spawnHUD(Player player, HUDPosition position, int maxLines, BufferedImage image, int width, int height, double displayDistance, double lineHeight)
 	{
 		if(maxLines < 1)
 		{
@@ -161,7 +208,16 @@ public class WonderHUD
 					lines.add(line);
 				}
 				
-				HUD hud = new HUD(player, maxLines, lines, new ImageHUD(position, width, height));
+				HUD hud = null;
+				
+				if(displayDistance < 0 || lineHeight < 0)//use default values for displayDistance and lineHeight
+				{
+					hud = new HUD(player, maxLines, lines, new ImageHUD(position, width, height));
+				}
+				else
+				{
+					hud = new HUD(player, maxLines, lines, new ImageHUD(position, width, height, displayDistance, lineHeight));
+				}
 				
 				playerHUD.addHUD(hud);
 			}

@@ -99,7 +99,7 @@ public class HUD
 		this.hudType = hudType;
 	}
 	
-	public Location calculateNewLocation(int rowIndex)
+	/*public Location calculateNewLocation(int rowIndex)
 	{
 		//Vector zVector = new Vector(0, 0, 1);
 		
@@ -172,9 +172,9 @@ public class HUD
 		z1 += zi;//+ horizontalOffset;//(((playerDirection.getX() + playerDirection.getY())/2) * horizontalOffset);
 		
 		return new Location(l.getWorld(), x1, y1,  z1);
-	}
+	}*/
 	
-	/*public Location calculateNewLocation(int rowIndex)
+	public Location calculateNewLocation(int rowIndex)
 	{	
 		double distance = hudType.getDistance();
 		double deltaTheta = hudType.getDeltaTheta();
@@ -210,9 +210,9 @@ public class HUD
 		z1 += zi;
 		
 		return new Location(l.getWorld(), x1, y1,  z1);
-	}*/
+	}
 	
-	private Vector rotateAroundYAxis(Vector vector, double theta)
+	/*private Vector rotateAroundYAxis(Vector vector, double theta)
 	{
 		double x0 = vector.getX();
 		double y0 = vector.getY();
@@ -223,5 +223,5 @@ public class HUD
 		double z = (z0 * Math.cos(theta)) - (x0 * Math.sin(theta));
 		
 		return new Vector(x, y, z);
-	}
+	}*/
 }
